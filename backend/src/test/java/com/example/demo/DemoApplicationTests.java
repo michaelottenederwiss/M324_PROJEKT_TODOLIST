@@ -10,7 +10,7 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertTrue(true, "alles gut");
+		assertTrue(true, "alles gut! JIPPI!");
 	}
 
 }
