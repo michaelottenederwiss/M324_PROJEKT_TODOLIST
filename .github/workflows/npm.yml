@@ -29,4 +29,24 @@ jobs:
       - name: Run tests
         run: |
           cd frontend
-          npm test
+          npm test -- --json --outputFile=jest-results.json
+
+      - name: Upload Jest test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jest-test-results
+          path: frontend/jest-results.json
+
+      - name: Install pkg
+        run: npm install -g pkg
+
+      - name: Build executable
+        run: |
+          cd frontend
+          pkg . --out-path dist
+
+      - name: Upload executable artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: nodejs-app
+          path: frontend/dist/*
